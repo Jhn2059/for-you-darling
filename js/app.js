@@ -133,10 +133,6 @@
             welcomeScreen.style.display = 'none';
             mainScreen.style.display = 'block';
             initMain();
-            setTimeout(() => {
-                const videoId = extractYouTubeId('https://www.youtube.com/watch?v=K3Qzzggn--s');
-                if (videoId) playYouTube(videoId, 'Para Ti 💕');
-            }, 1500);
             setTimeout(() => msgOverlay.classList.add('visible'), 500);
             setTimeout(() => msgOverlay.classList.remove('visible'), 8000);
         }, 800);
@@ -316,19 +312,6 @@
 
             ctx.restore();
             ctx.restore();
-
-            // ── Glow effect on beat ──
-            if (energy && energy.beat) {
-                ctx.save();
-                const glow = ctx.createRadialGradient(stemEndX, stemEndY, 0, stemEndX, stemEndY, this.bloomSize * 1.5);
-                glow.addColorStop(0, `rgba(255, 124, 188, 0.15)`);
-                glow.addColorStop(1, `rgba(255, 124, 188, 0)`);
-                ctx.fillStyle = glow;
-                ctx.beginPath();
-                ctx.arc(stemEndX, stemEndY, this.bloomSize * 1.5, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
         }
 
         drawStem(ctx, sx, sy, dx, dy) {
