@@ -2018,6 +2018,19 @@
         }
     }, { once: true });
 
+    // ─── Reanudar al volver a la pestaña ──────────────────────────
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) return;
+        // Al volver, reanudar YouTube si estaba reproduciendo
+        if (ytPlayer && isYouTube && isPlaying) {
+            try { ytPlayer.playVideo(); } catch (e) {}
+        }
+        // Reanudar contexto de audio si está suspendido
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    });
+
     // ─── Start canvas ─────────────────────────────────────────────
     resizeCanvas();
     initStars();
