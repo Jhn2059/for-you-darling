@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💚 Para ti, mi amor 💗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 88 C25 65 5 45 5 25 C5 10 20 0 35 10 L50 25 L65 10 C80 0 95 10 95 25 C95 45 75 65 50 88Z' fill='black'/></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ============ WELCOME / LOGIN SCREEN ============ -->
+    <div id="welcome-screen">
+        <div class="welcome-card">
+            <div class="welcome-hearts">💚💗</div>
+            <h1 class="welcome-title">Bienvenida</h1>
+            <p class="welcome-subtitle">
+                Cada flor baila al ritmo de tu corazón<br>
+                💚 Escribe tu nombre para entrar 💗
+            </p>
+            <div class="login-group">
+                <input type="text" id="name-input" class="name-input" placeholder="Tu nombre..." maxlength="20" autocomplete="off" spellcheck="false">
+                <button id="enter-btn" class="btn-enter" disabled>✨ Entrar ✨</button>
+            </div>
+            <p id="login-error" class="login-error"></p>
+            <div class="welcome-flowers">🌷🌸🌺💐🌷</div>
+        </div>
+        <div id="petals-container"></div>
+    </div>
+
+    <!-- ============ MAIN SCREEN (ROKOLA) ============ -->
+    <div id="main-screen" style="display:none;">
+        <canvas id="canvas"></canvas>
+
+        <!-- Mensaje romántico flotante -->
+        <div id="message-overlay">
+            <span id="romantic-message">💕Para mi persona favorita💕</span>
+        </div>
+
+        <!-- Panel de control (Rokola) -->
+        <div id="controls">
+            <div class="controls-header">
+                <span class="controls-title">🎵 Reproductor</span>
+                <div class="header-actions">
+                    <button id="btn-reset" class="btn-small" title="Reiniciar vista">🔄</button>
+                    <button id="flower-toggle" class="btn-small" title="Cambiar tipo de flor">
+                        <span id="flower-icon">🌷</span>
+                    </button>
+                    <button id="btn-color-picker" class="btn-small" title="Color de las flores">
+                        <span id="color-dot" style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#ff7cbc;border:1px solid rgba(255,255,255,0.3);"></span>
+                    </button>
+                    <input type="color" id="flower-color" value="#ff7cbc">
+                </div>
+            </div>
+
+            <div class="jukebox">
+                <!-- Botones de control -->
+                <div class="player-controls">
+                    <button id="btn-prev" class="btn-jukebox" title="Canción anterior">⏮</button>
+                    <button id="btn-rewind" class="btn-jukebox" title="Retroceder 10s">⏪</button>
+                    <button id="btn-play" class="btn-play">▶</button>
+                    <button id="btn-forward" class="btn-jukebox" title="Adelantar 10s">⏩</button>
+                    <button id="btn-next" class="btn-jukebox" title="Siguiente canción">⏭</button>
+                </div>
+
+                <!-- Barra de progreso -->
+                <div class="progress-container">
+                    <span id="time-current" class="time-label">0:00</span>
+                    <div id="progress-bar" class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                        <div id="progress-thumb" class="progress-thumb"></div>
+                    </div>
+                    <span id="time-total" class="time-label">0:00</span>
+                </div>
+
+                <!-- Fuentes de música -->
+                <div class="source-row">
+                    <div class="source-tabs">
+                        <button class="source-tab active" data-source="file">📁 Archivo</button>
+                        <button class="source-tab" data-source="url">🔗 Enlace</button>
+                    </div>
+                    <div id="file-source" class="source-panel">
+                        <label class="btn-upload">
+                            📂 Subir música
+                            <input type="file" id="file-upload" accept="audio/*">
+                        </label>
+                    </div>
+                    <div id="url-source" class="source-panel" style="display:none">
+                        <input type="text" id="url-input" class="url-input" placeholder="YouTube / YT Music / URL directa...">
+                        <button id="btn-load-url" class="btn-load-url">Cargar</button>
+                    </div>
+                </div>
+
+                <!-- Selector de canciones guardadas -->
+                <div class="info-row">
+                    <select id="music-select" class="music-select">
+                        <option value="">🎶 Biblioteca musical</option>
+                        <option value="demo">🎵 Modo demostración</option>
+                    </select>
+                    <span id="current-track" class="track-name">Sin música</span>
+                </div>
+            </div>
+
+            <!-- Barra inferior -->
+            <div class="info-bar">
+                <span>💚 <span id="flower-count">0</span> flores</span>
+                <button id="btn-logout" class="btn-logout" title="Cerrar sesión">🚪 Cerrar sesión</button>
+                <span id="beat-indicator">🎵 Esperando música...</span>
+                <span class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
