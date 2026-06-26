@@ -165,11 +165,12 @@
             mainFlowers[0].baseY = h + 20;
             mainFlowers[1].baseX = w * 0.7;
             mainFlowers[1].baseY = h + 20;
-            // Stalk reaches up so bloom is at ~42% from top
-            mainFlowers[0].stalkHeight = h * 0.58;
-            mainFlowers[1].stalkHeight = h * 0.58;
-            mainFlowers[0].bloomSize = Math.max(100, Math.min(220, h * 0.2));
-            mainFlowers[1].bloomSize = Math.max(100, Math.min(220, h * 0.2));
+            // Stalk reaches up so bloom is at ~32% from top
+            const isMobile = w < 768;
+            mainFlowers[0].stalkHeight = h * 0.68;
+            mainFlowers[1].stalkHeight = h * 0.68;
+            mainFlowers[0].bloomSize = Math.max(80, Math.min(180, h * (isMobile ? 0.14 : 0.2)));
+            mainFlowers[1].bloomSize = Math.max(80, Math.min(180, h * (isMobile ? 0.14 : 0.2)));
             mainFlowers[0].stalkWidth = Math.max(4, Math.min(8, h * 0.006));
             mainFlowers[1].stalkWidth = Math.max(4, Math.min(8, h * 0.006));
         }
@@ -183,8 +184,9 @@
             new MainFlower(w * 0.7, h + 20, flowerType, flowerColor)
         ];
         mainFlowers.forEach((f, i) => {
-            f.stalkHeight = h * 0.58;
-            f.bloomSize = Math.max(100, Math.min(220, h * 0.2));
+            const isMobile = w < 768;
+            f.stalkHeight = h * 0.68;
+            f.bloomSize = Math.max(80, Math.min(180, h * (isMobile ? 0.14 : 0.2)));
             f.stalkWidth = Math.max(4, Math.min(8, h * 0.006));
             f.swayOffset = i * Math.PI;
             f.bobOffset = i * 0.7;
