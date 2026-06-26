@@ -240,42 +240,42 @@
                 const treble = energy.treble || 0;
                 const beat = energy.beat || false;
 
-                this.phase += 0.02 * (1 + bass * 3);
+                this.phase += 0.03 * (1 + bass * 3);
 
-                const swayTarget = Math.sin(this.phase + this.swayOffset) * (0.03 + bass * 0.12);
-                this.swayAngle += (swayTarget - this.swayAngle) * 0.08;
+                const swayTarget = Math.sin(this.phase + this.swayOffset) * (0.06 + bass * 0.2);
+                this.swayAngle += (swayTarget - this.swayAngle) * 0.1;
 
-                const bobTarget = Math.sin(this.phase * 0.5 + this.bobOffset) * (2 + bass * 10) + (beat ? -8 : 0);
-                this.bobY += (bobTarget - this.bobY) * 0.1;
+                const bobTarget = Math.sin(this.phase * 0.5 + this.bobOffset) * (4 + bass * 15) + (beat ? -12 : 0);
+                this.bobY += (bobTarget - this.bobY) * 0.12;
 
-                this.targetOpenness = 0.4 + bass * 0.5 + mid * 0.3;
+                this.targetOpenness = 0.4 + bass * 0.6 + mid * 0.4;
                 if (beat) this.targetOpenness = 1;
-                this.bloomOpenness += (this.targetOpenness - this.bloomOpenness) * 0.06;
+                this.bloomOpenness += (this.targetOpenness - this.bloomOpenness) * 0.1;
 
-                this.petalFlutter = Math.sin(t * 0.005) * treble * 0.05;
+                this.petalFlutter = Math.sin(t * 0.005) * treble * 0.12;
             }
 
             // ── Fase lenta (movimiento base, elegante) ──
-            this.slowPhase += 0.005;
+            this.slowPhase += 0.008;
 
-            const slowSway = Math.sin(this.slowPhase * 0.3 + this.swayOffset * 0.7) * 0.04
-                + Math.sin(this.slowPhase * 0.15 + this.swayOffset * 1.5) * 0.025;
-            this.swayAngle += slowSway * 0.06;
+            const slowSway = Math.sin(this.slowPhase * 0.3 + this.swayOffset * 0.7) * 0.06
+                + Math.sin(this.slowPhase * 0.15 + this.swayOffset * 1.5) * 0.04;
+            this.swayAngle += slowSway * 0.08;
 
-            const slowBob = Math.sin(this.slowPhase * 0.2 + this.bobOffset * 0.8) * 4
-                + Math.sin(this.slowPhase * 0.1 + this.bobOffset * 1.8) * 2;
-            this.bobY += (slowBob - this.bobY * 0.5) * 0.03;
+            const slowBob = Math.sin(this.slowPhase * 0.2 + this.bobOffset * 0.8) * 8
+                + Math.sin(this.slowPhase * 0.1 + this.bobOffset * 1.8) * 4;
+            this.bobY += (slowBob - this.bobY * 0.5) * 0.05;
 
             // En reposo (sin música), el movimiento lento es el principal
             if (!energy) {
-                this.targetOpenness = 0.45 + Math.sin(t * 0.0005 + this.bobOffset) * 0.2;
-                this.swayAngle += (Math.sin(t * 0.0005 + this.swayOffset) * 0.05
-                    + Math.sin(t * 0.0003 + this.swayOffset * 1.3) * 0.035) * 0.1;
-                this.bobY += (Math.sin(t * 0.0004 + this.bobOffset) * 6
-                    + Math.sin(t * 0.0002 + this.bobOffset * 2) * 3) * 0.05;
-                this.bloomOpenness += (this.targetOpenness - this.bloomOpenness) * 0.03;
-                this.petalFlutter = Math.sin(t * 0.003 + this.swayOffset) * 0.025
-                    + Math.sin(t * 0.005 + this.swayOffset * 1.7) * 0.015;
+                this.targetOpenness = 0.5 + Math.sin(t * 0.0008 + this.bobOffset) * 0.25;
+                this.swayAngle += (Math.sin(t * 0.0008 + this.swayOffset) * 0.08
+                    + Math.sin(t * 0.0005 + this.swayOffset * 1.3) * 0.05) * 0.15;
+                this.bobY += (Math.sin(t * 0.0006 + this.bobOffset) * 10
+                    + Math.sin(t * 0.0003 + this.bobOffset * 2) * 5) * 0.08;
+                this.bloomOpenness += (this.targetOpenness - this.bloomOpenness) * 0.05;
+                this.petalFlutter = Math.sin(t * 0.004 + this.swayOffset) * 0.04
+                    + Math.sin(t * 0.007 + this.swayOffset * 1.7) * 0.025;
             }
         }
 
@@ -1897,7 +1897,7 @@
         if (energy) {
             if (beatTimer > 0) beatTimer--;
             if (energy.beat || beatTimer > 8) {
-                beatIndicator.textContent = '💓 ¡Al compás!';
+                beatIndicator.textContent = '💓';
                 beatIndicator.classList.add('beat');
                 if (energy.beat && mainFlowers.length >= 2) {
                     const i = Math.floor(Math.random() * 2);
